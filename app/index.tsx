@@ -1,31 +1,20 @@
-import { Text, View } from "react-native";
-import { ThemeToggle } from "../src/components/ThemeToggle";
-import { useThemeStyles } from "../src/hooks/useThemeStyles";
+import { router } from "expo-router";
+import React, { useState } from "react";
+import { SplashScreen } from "../src/components/SplashScreen";
 
 export default function Index() {
-  const { classes } = useThemeStyles();
+  const [showSplash, setShowSplash] = useState(true);
 
-  return (
-    <View
-      className={`flex-1 ${classes.background} justify-center items-center p-6`}
-    >
-      <Text className={`${classes.text} text-3xl font-bold mb-4`}>
-        Car Yard
-      </Text>
+  const handleSplashFinish = () => {
+    setShowSplash(false);
+    // Navigate to the main app (tabs)
+    router.replace("/(tabs)/home");
+  };
 
-      <Text className={`${classes.text} text-lg mb-8 text-center`}>
-        Welcome to your car marketplace app
-      </Text>
+  if (showSplash) {
+    return <SplashScreen onFinish={handleSplashFinish} />;
+  }
 
-      <View className={`${classes.card} p-6 rounded-xl mb-8 w-full max-w-sm`}>
-        <Text className={`${classes.text} text-lg font-medium mb-2`}>
-          Theme Settings
-        </Text>
-        <Text className={`${classes.text} opacity-70 mb-4`}>
-          Switch between light and dark themes
-        </Text>
-        <ThemeToggle />
-      </View>
-    </View>
-  );
+  // This return should never be reached since we navigate away
+  return null;
 }
