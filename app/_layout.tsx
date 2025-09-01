@@ -5,7 +5,7 @@ import { ThemeProvider } from "../src/context/ThemeContext";
 export default function RootLayout() {
   return (
     <ThemeProvider>
-      <Stack />
+      <Stack screenOptions={{ headerShown: false }} />
     </ThemeProvider>
   );
 }
