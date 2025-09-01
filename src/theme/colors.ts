@@ -2,6 +2,7 @@ export const themes = {
   light: {
     background: '#ffffff',
     text: '#000000',
+    icon: '#000000',
     primary: '#007AFF',
     secondary: '#5856D6',
     success: '#34C759',
@@ -13,6 +14,7 @@ export const themes = {
   dark: {
     background: '#000000',
     text: '#ffffff',
+    icon: '#ffffff',
     primary: '#0A84FF',
     secondary: '#5E5CE6',
     success: '#30D158',
