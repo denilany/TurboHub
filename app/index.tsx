@@ -1,20 +1,31 @@
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { SplashScreen } from "../src/components/SplashScreen";
+import WelcomeScreen from "../src/components/WelcomeScreen";
 
 export default function Index() {
   const [showSplash, setShowSplash] = useState(true);
+  const [showWelcome, setShowWelcome] = useState(false);
 
-  const handleSplashFinish = () => {
-    setShowSplash(false);
-    // Navigate to the main app (tabs)
-    router.replace("/(tabs)/home");
-  };
+  useEffect(() => {
+    if (showWelcome) {
+      const timer = setTimeout(() => {
+        router.replace("/(tabs)/home");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showWelcome]);
 
   if (showSplash) {
-    return <SplashScreen onFinish={handleSplashFinish} />;
+    return <SplashScreen onFinish={() => {
+      setShowSplash(false);
+      setShowWelcome(true);
+    }} />;
   }
 
-  // This return should never be reached since we navigate away
+  if (showWelcome) {
+    return <WelcomeScreen />;
+  }
+
   return null;
 }

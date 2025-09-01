@@ -1,32 +1,30 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { ThemeToggle } from "./ThemeToggle";
-import { useThemeStyles } from "../hooks/useThemeStyles";
+import React from 'react';
+import { View, Text, ImageBackground, StatusBar } from 'react-native';
 
-export const WelcomeScreen: React.FC = () => {
-  const { classes } = useThemeStyles();
+// Assuming your image is in the assets folder
+const backgroundImage = require('../assets/images/bmw_autumn.jpg');
 
+const WelcomeScreen: React.FC = () => {
   return (
-    <View
-      className={`flex-1 ${classes.background} justify-center items-center p-6`}
-    >
-      <Text className={`${classes.text} text-3xl font-bold mb-4`}>
-        Car Yard
-      </Text>
-
-      <Text className={`${classes.text} text-lg mb-8 text-center`}>
-        Welcome to your car marketplace app
-      </Text>
-
-      <View className={`${classes.card} p-6 rounded-xl mb-8 w-full max-w-sm`}>
-        <Text className={`${classes.text} text-lg font-medium mb-2`}>
-          Theme Settings
-        </Text>
-        <Text className={`${classes.text} opacity-70 mb-4`}>
-          Switch between light and dark themes
-        </Text>
-        <ThemeToggle />
-      </View>
+    <View className="flex-1">
+      {/* Set status bar style to light content for better contrast */}
+      <StatusBar barStyle="light-content" />
+      <ImageBackground source={backgroundImage} className="flex-1 w-full h-full justify-end">
+        <View className="p-6 pb-12 bg-black/20"> {/* Dark overlay for text readability */}
+          <View className="flex-row items-center mb-2">
+            <Text className="text-white text-3xl font-bold">Welcome to</Text>
+            <Text className="text-4xl ml-2">👋</Text>
+          </View>
+          <Text className="text-white text-6xl font-extrabold mb-4">
+            TurboHub
+          </Text>
+          <Text className="text-white text-lg font-normal leading-6">
+            The best car marketplace app of the century for your transportation needs!
+          </Text>
+        </View>
+      </ImageBackground>
     </View>
   );
 };
+
+export default WelcomeScreen;

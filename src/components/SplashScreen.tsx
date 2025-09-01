@@ -24,11 +24,11 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
 
     spinAnimation.start();
 
-    // Auto-finish after 10 seconds
+    // Auto-finish after 3 seconds
     const timer = setTimeout(() => {
       spinAnimation.stop();
       onFinish();
-    }, 10000);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);
