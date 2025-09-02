@@ -12,8 +12,8 @@ const WelcomeScreen: React.FC = () => {
       <ImageBackground source={backgroundImage} className="flex-1 w-full h-full justify-end">
         <View className="p-6 pb-12 bg-black/20"> {/* Dark overlay for text readability */}
           <View className="flex-row items-center mb-2">
-            <Text className="text-white text-3xl font-bold">Welcome to</Text>
-            <Text className="text-4xl ml-2">👋</Text>
+            <Text className="text-white text-3xl font-bold">Welcome to </Text>
+            <Text className="text-white text-4xl ml-2">👋</Text>
           </View>
           <Text className="text-white text-6xl font-extrabold mb-4">
             TurboHub
