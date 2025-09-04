@@ -12,7 +12,7 @@ const GetStartedScreen: React.FC = () => {
   const isDark = classes.text === 'text-white';
 
   return (
-    <View className={`flex-1 ${classes.background} items-center pt-8 px-4`} style={{ backgroundColor: colors.background }}>
+    <View className={`flex-1 ${classes.background} items-center pt-8 px-4`}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={colors.background} />
 
       {/* Car Image and 360° Overlay - Centered */}
@@ -51,7 +51,7 @@ const GetStartedScreen: React.FC = () => {
         <Button 
           title="Get Started"
           className="rounded-full"
-          onPress={() => router.replace('/(tabs)/home')}
+          onPress={() => router.push('/auth')}
         />
       </View>
     </View>
