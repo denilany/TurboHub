@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({ title, className, textClassName, ...pro
   return (
     <TouchableOpacity
       className={clsx(
-        "w-full py-4 rounded-xl",
+        "w-full py-4 rounded-full",
         classes.button,
         className
       )}
