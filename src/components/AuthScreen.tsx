@@ -1,9 +1,9 @@
 import React from 'react';
 import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
-import { FontAwesome5, FontAwesome } from '@expo/vector-icons';
-import { router } from 'expo-router';
+import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
 import Button from './Button';
 import CarIcon from './CarIcon';
+import BackArrow from './BackArrow';
 import { useThemeStyles } from '../hooks/useThemeStyles';
 
 const AuthScreen: React.FC = () => {
@@ -27,12 +27,7 @@ const AuthScreen: React.FC = () => {
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={colors.background} />
 
       {/* Back Arrow Button */}
-      <TouchableOpacity 
-        className="absolute top-16 left-6" 
-        onPress={() => router.back()}
-      >
-        <FontAwesome5 name="arrow-left" size={24} color={colors.text} />
-      </TouchableOpacity>
+      <BackArrow />
 
       {/* Main Content Container */}
       <View className="flex-1 justify-center items-center w-full mt-32">
