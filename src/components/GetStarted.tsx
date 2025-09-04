@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, Image, StatusBar, TouchableOpacity } from 'react-native';
 import { router } from 'expo-router';
 import { useThemeStyles } from '../hooks/useThemeStyles';
+import Button from './Button';
 
 // Image for the car (adjust path as needed)
 const carImage = require('../assets/images/mclaren.jpg');
@@ -46,12 +47,13 @@ const GetStartedScreen: React.FC = () => {
       </View>
 
       {/* Get Started Button */}
-      <TouchableOpacity 
-        className={`${classes.button} w-11/12 py-4 rounded-full absolute bottom-8`}
-        onPress={() => router.replace('/(tabs)/home')}
-      >
-        <Text className={`${classes.buttonText} text-center text-lg font-semibold`}>Get Started</Text>
-      </TouchableOpacity>
+      <View className="absolute bottom-8 w-11/12">
+        <Button 
+          title="Get Started"
+          className="rounded-full"
+          onPress={() => router.replace('/(tabs)/home')}
+        />
+      </View>
     </View>
   );
 };
