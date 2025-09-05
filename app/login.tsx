@@ -1,7 +1,7 @@
 import { FontAwesome, FontAwesome5, Fontisto, MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import BackArrow from '../src/components/BackArrow';
 import CarIcon from '../src/components/CarIcon';
 import CustomButton from '../src/components/CustomButton';
@@ -34,13 +34,14 @@ export default function SignUpScreen() {
   };
 
   return (
-    <KeyboardAvoidingView 
-      className={`flex-1 ${classes.background}`} 
-      style={{ backgroundColor: colors.background }}
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      keyboardVerticalOffset={0}
-    >
-      <View className="flex-1 items-center p-6">
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <KeyboardAvoidingView 
+        className={`flex-1 ${classes.background}`} 
+        style={{ backgroundColor: colors.background }}
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+        keyboardVerticalOffset={0}
+      >
+        <View className="flex-1 items-center p-6">
         <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
       <BackArrow />
@@ -120,8 +121,9 @@ export default function SignUpScreen() {
             <Text className={`${classes.text} font-semibold`}>Sign up</Text>
           </TouchableOpacity>
         </View>
-      </View>
-      </View>
-    </KeyboardAvoidingView>
+        </View>
+        </View>
+      </KeyboardAvoidingView>
+    </TouchableWithoutFeedback>
   );
 }
