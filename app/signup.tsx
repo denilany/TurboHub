@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
 import { FontAwesome, FontAwesome5, Fontisto, MaterialIcons } from '@expo/vector-icons';
-import CarIcon from '../src/components/CarIcon';
+import React, { useState } from 'react';
+import { KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import BackArrow from '../src/components/BackArrow';
+import CarIcon from '../src/components/CarIcon';
+import CustomButton from '../src/components/CustomButton';
+import Input from '../src/components/Input';
+import SocialIcon from '../src/components/SocialIcon';
 import { useThemeStyles } from '../src/hooks/useThemeStyles';
 
 export default function SignUpScreen() {
@@ -51,33 +54,24 @@ export default function SignUpScreen() {
           Create Your Account
         </Text>
         
-        <View className={`flex-row items-center w-full ${classes.card} ${classes.border} border rounded-xl px-4 mb-4`}>
-          <MaterialIcons name="email" size={18} color={email.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />
-          <TextInput
-            className={`flex-1 h-14 text-lg ${classes.text}`}
-            placeholder="Email"
-            placeholderTextColor="#9ca3af"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-          />
-        </View>
+        <Input
+          icon={<MaterialIcons name="email" size={18} color={email.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />}
+          placeholder="Email"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
 
-        <View className={`flex-row items-center w-full ${classes.card} ${classes.border} border rounded-xl px-4 mb-4`}>
-          <Fontisto name="locked" size={18} color={password.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />
-          <TextInput
-            className={`flex-1 h-14 text-lg ${classes.text}`}
-            placeholder="Password"
-            placeholderTextColor="#9ca3af"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={!isPasswordVisible}
-          />
-          <TouchableOpacity onPress={togglePasswordVisibility}>
-            <FontAwesome name={isPasswordVisible ? "eye" : "eye-slash"} size={18} color={password.trim() ? "#101010" : "#9ca3af"} />
-          </TouchableOpacity>
-        </View>
+        <Input
+          icon={<Fontisto name="locked" size={18} color={password.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />}
+          placeholder="Password"
+          value={password}
+          onChangeText={setPassword}
+          isPassword
+          isPasswordVisible={isPasswordVisible}
+          onTogglePassword={togglePasswordVisibility}
+        />
 
         <View className="flex-row items-center justify-center w-full mb-6">
           <TouchableOpacity 
@@ -89,15 +83,11 @@ export default function SignUpScreen() {
           <Text className="text-base text-gray-900">Remember me</Text>
         </View>
         
-        <TouchableOpacity 
-          className="w-full py-4 rounded-full"
-          style={{ backgroundColor: email.trim() || password.trim() ? '#101010' : '#393939' }}
+        <CustomButton
+          title="Sign up"
+          isActive={email.trim() !== "" || password.trim() !== ""}
           onPress={handleSignUp}
-        >
-          <Text className="text-white text-center text-lg font-semibold">
-            Sign up
-          </Text>
-        </TouchableOpacity>
+        />
 
         <View className="flex-row items-center my-6 w-full mt-10 mb-10">
           <View className={`flex-1 h-px ${classes.border}`} />
@@ -106,24 +96,17 @@ export default function SignUpScreen() {
         </View>
         
         <View className="flex-row items-center justify-center space-x-6 mb-10">
-          <TouchableOpacity 
-            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-xl items-center justify-center`}
-            onPress={() => handleSocialLogin('Facebook')}
-          >
+          <SocialIcon onPress={() => handleSocialLogin('Facebook')}>
             <FontAwesome5 name="facebook" size={24} color="#3b5998" />
-          </TouchableOpacity>
-          <TouchableOpacity 
-            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center mx-3`}
-            onPress={() => handleSocialLogin('Google')}
-          >
-            <FontAwesome name="google" size={24} color="#db4437" />
-          </TouchableOpacity>
-          <TouchableOpacity 
-            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center`}
-            onPress={() => handleSocialLogin('Apple')}
-          >
+          </SocialIcon>
+          <View className="mx-3">
+            <SocialIcon onPress={() => handleSocialLogin('Google')}>
+              <FontAwesome name="google" size={24} color="#db4437" />
+            </SocialIcon>
+          </View>
+          <SocialIcon onPress={() => handleSocialLogin('Apple')}>
             <FontAwesome name="apple" size={24} color={colors.text} />
-          </TouchableOpacity>
+          </SocialIcon>
         </View>
 
         <View className="flex-row">
