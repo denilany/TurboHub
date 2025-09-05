@@ -22,7 +22,7 @@ export default function SignUpScreen() {
   };
 
   const handleSignUp = () => {
-    router.push('/signup');
+    console.log('Signing up with:', email, password)
   };
 
   const handleSocialLogin = (provider: string) => {
@@ -103,7 +103,7 @@ export default function SignUpScreen() {
           
           <View className="flex-row items-center justify-center space-x-6 mb-10">
             <SocialIcon onPress={() => handleSocialLogin('Facebook')}>
-              <FontAwesome5 name="facebook" size={24} color="#3b5998" />
+              <FontAwesome5 name="facebook" size={24} color="#209AEE" />
             </SocialIcon>
             <View className="mx-3">
               <SocialIcon onPress={() => handleSocialLogin('Google')}>

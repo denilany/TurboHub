@@ -1,7 +1,7 @@
 import { FontAwesome, FontAwesome5, Fontisto, MaterialIcons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import React, { useState } from 'react';
-import { KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Keyboard, KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import BackArrow from '../src/components/BackArrow';
 import CarIcon from '../src/components/CarIcon';
 import CustomButton from '../src/components/CustomButton';
@@ -103,7 +103,7 @@ export default function SignUpScreen() {
         
         <View className="flex-row items-center justify-center space-x-6 mb-10">
           <SocialIcon onPress={() => handleSocialLogin('Facebook')}>
-            <FontAwesome5 name="facebook" size={24} color="#3b5998" />
+            <FontAwesome5 name="facebook" size={24} color="#209AEE" />
           </SocialIcon>
           <View className="mx-3">
             <SocialIcon onPress={() => handleSocialLogin('Google')}>
