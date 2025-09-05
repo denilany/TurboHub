@@ -12,7 +12,7 @@ export default function AuthScreen() {
   const isDark = classes.text === 'text-white';
 
   const handleSignIn = () => {
-    console.log("Navigating to sign in screen...");
+    router.push('/login');
   };
 
   const handleSignUp = () => {

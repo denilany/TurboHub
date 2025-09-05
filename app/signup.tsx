@@ -1,4 +1,5 @@
 import { FontAwesome, FontAwesome5, Fontisto, MaterialIcons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import React, { useState } from 'react';
 import { KeyboardAvoidingView, Platform, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import BackArrow from '../src/components/BackArrow';
@@ -16,8 +17,12 @@ export default function SignUpScreen() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const handleSignIn = () => {
+    router.push('/login');
+  };
+
   const handleSignUp = () => {
-    console.log("Signing up with email and password...");
+    router.push('/signup');
   };
 
   const handleSocialLogin = (provider: string) => {
@@ -111,7 +116,7 @@ export default function SignUpScreen() {
 
         <View className="flex-row">
           <Text className="text-gray-500">Already have an account?</Text>
-          <TouchableOpacity className="ml-1">
+          <TouchableOpacity className="ml-1" onPress={handleSignIn}>
             <Text className={`${classes.text} font-semibold`}>Sign in</Text>
           </TouchableOpacity>
         </View>
