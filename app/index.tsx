@@ -1,4 +1,3 @@
-import { router } from "expo-router";
 import React, { useState, useEffect } from "react";
 import { SplashScreen } from "../src/components/SplashScreen";
 import WelcomeScreen from "../src/components/WelcomeScreen";

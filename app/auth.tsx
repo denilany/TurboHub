@@ -35,7 +35,7 @@ export default function AuthScreen() {
         </View>
 
         <Text className={`text-5xl font-bold ${classes.text} mb-10`}>
-          Let's you in
+          Let&apos;s you in
         </Text>
         
         <TouchableOpacity 
@@ -81,7 +81,7 @@ export default function AuthScreen() {
         />
         
         <View className="flex-row mt-2">
-          <Text className="text-gray-500">Don't have an account?</Text>
+          <Text className="text-gray-500">Don&apos;t have an account?</Text>
           <TouchableOpacity className="ml-1" onPress={handleSignUp}>
             <Text className={`${classes.text} font-semibold`}>Sign up</Text>
           </TouchableOpacity>
