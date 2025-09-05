@@ -17,6 +17,10 @@ export default function SignUpScreen() {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const handleBackButton =() => {
+    router.push('/auth');
+  };
+
   const handleSignUp = () => {
     router.push('/signup')
   };
@@ -44,7 +48,7 @@ export default function SignUpScreen() {
         <View className="flex-1 items-center p-6">
         <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
-      <BackArrow />
+      <BackArrow onPress={handleBackButton}/>
 
       { /* Main section */ }
       <View className="flex-1 justify-center items-center w-full mt-20">

@@ -11,6 +11,10 @@ export default function AuthScreen() {
   const { classes, colors } = useThemeStyles();
   const isDark = classes.text === 'text-white';
 
+  const handleBackButton = () => {
+    router.push('/getstarted');
+  };
+
   const handleSignIn = () => {
     router.push('/login');
   };
@@ -27,7 +31,7 @@ export default function AuthScreen() {
     <View className={`absolute inset-0 flex-1 ${classes.background} items-center p-6`}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} backgroundColor={colors.background} />
 
-      <BackArrow />
+      <BackArrow onPress={handleBackButton} />
 
       <View className="flex-1 justify-center items-center w-full mt-32 mb-5">
         <View className="mb-16">

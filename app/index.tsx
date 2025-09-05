@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
+import { router } from "expo-router";
 import { SplashScreen } from "../src/components/SplashScreen";
 import WelcomeScreen from "../src/components/WelcomeScreen";
-import GetStartedScreen from "../src/components/GetStarted";
 
 export default function Index() {
   const [showSplash, setShowSplash] = useState(true);
   const [showWelcome, setShowWelcome] = useState(false);
-  const [showGetStarted, setShowGetStarted] = useState(false);
 
   useEffect(() => {
     if (showWelcome) {
       const timer = setTimeout(() => {
-        setShowWelcome(false);
-        setShowGetStarted(true);
+        router.push('/getstarted');
       }, 2000);
       return () => clearTimeout(timer);
     }
@@ -27,10 +25,6 @@ export default function Index() {
 
   if (showWelcome) {
     return <WelcomeScreen />;
-  }
-
-  if (showGetStarted) {
-    return <GetStartedScreen />;
   }
 
   return null;
