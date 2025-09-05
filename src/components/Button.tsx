@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useThemeStyles } from '../hooks/useThemeStyles';
 
 interface ButtonProps extends TouchableOpacityProps {
