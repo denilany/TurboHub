@@ -1,11 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
+import { useThemeStyles } from '../../src/hooks/useThemeStyles';
 
 export default function TabLayout() {
+  const { colors } = useThemeStyles();
+
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: '#007AFF',
+        tabBarActiveTintColor: colors.icon,
         headerShown: false,
       }}>
       <Tabs.Screen
@@ -31,7 +34,7 @@ export default function TabLayout() {
         options={{
           title: 'Inbox',
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'mail' : 'mail-outline'} size={24} color={color} />
+            <Ionicons name={focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses-outline'} size={24} color={color} />
           ),
         }}
       />

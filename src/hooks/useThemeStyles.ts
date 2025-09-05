@@ -13,8 +13,8 @@ export const useThemeStyles = () => {
         text: 'text-white',
         card: 'bg-gray-900',
         border: 'border-gray-700',
-        button: 'bg-blue-600',
-        buttonText: 'text-white',
+        button: 'bg-white',
+        buttonText: 'text-black',
       };
     } else {
       return {
@@ -22,7 +22,7 @@ export const useThemeStyles = () => {
         text: 'text-black',
         card: 'bg-gray-100',
         border: 'border-gray-300',
-        button: 'bg-blue-500',
+        button: 'bg-black',
         buttonText: 'text-white',
       };
     }
