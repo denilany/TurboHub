@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StatusBar, TouchableOpacity, TextInput } from 'react-native';
-import { FontAwesome, FontAwesome5 } from '@expo/vector-icons';
-import Button from '../src/components/Button';
+import { View, Text, StatusBar, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { FontAwesome, FontAwesome5, Fontisto, MaterialIcons } from '@expo/vector-icons';
 import CarIcon from '../src/components/CarIcon';
 import BackArrow from '../src/components/BackArrow';
 import { useThemeStyles } from '../src/hooks/useThemeStyles';
@@ -31,23 +30,29 @@ export default function SignUpScreen() {
   };
 
   return (
-    <View className={`flex-1 ${classes.background} items-center p-6`} style={{ backgroundColor: colors.background }}>
-      <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+    <KeyboardAvoidingView 
+      className={`flex-1 ${classes.background}`} 
+      style={{ backgroundColor: colors.background }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={0}
+    >
+      <View className="flex-1 items-center p-6">
+        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
       <BackArrow />
 
       { /* Main section */ }
-      <View className="flex-1 justify-center items-center w-full pt-20">
-        <View className="mb-8">
+      <View className="flex-1 justify-center items-center w-full mt-20">
+        <View className="mb-16">
           <CarIcon size={120} />
         </View>
 
-        <Text className={`text-5xl font-extrabold ${classes.text} mb-10`}>
+        <Text className={`text-4xl font-bold ${classes.text} mb-10`}>
           Create Your Account
         </Text>
         
         <View className={`flex-row items-center w-full ${classes.card} ${classes.border} border rounded-xl px-4 mb-4`}>
-          <FontAwesome name="envelope" size={18} color="#9ca3af" style={{ marginRight: 16 }} />
+          <MaterialIcons name="email" size={18} color={email.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />
           <TextInput
             className={`flex-1 h-14 text-lg ${classes.text}`}
             placeholder="Email"
@@ -60,7 +65,7 @@ export default function SignUpScreen() {
         </View>
 
         <View className={`flex-row items-center w-full ${classes.card} ${classes.border} border rounded-xl px-4 mb-4`}>
-          <FontAwesome name="lock" size={18} color="#9ca3af" style={{ marginRight: 16 }} />
+          <Fontisto name="locked" size={18} color={password.trim() ? "#101010" : "#9ca3af"} style={{ marginRight: 16 }} />
           <TextInput
             className={`flex-1 h-14 text-lg ${classes.text}`}
             placeholder="Password"
@@ -70,46 +75,51 @@ export default function SignUpScreen() {
             secureTextEntry={!isPasswordVisible}
           />
           <TouchableOpacity onPress={togglePasswordVisibility}>
-            <FontAwesome name={isPasswordVisible ? "eye-slash" : "eye"} size={18} color="#9ca3af" />
+            <FontAwesome name={isPasswordVisible ? "eye" : "eye-slash"} size={18} color={password.trim() ? "#101010" : "#9ca3af"} />
           </TouchableOpacity>
         </View>
 
         <View className="flex-row items-center justify-center w-full mb-6">
           <TouchableOpacity 
-            className={`w-5 h-5 ${classes.border} border rounded-sm items-center justify-center mr-2`}
+            className={`w-5 h-5 ${rememberMe ? 'bg-gray-800' : 'bg-transparent'} border-2 border-black rounded-md items-center justify-center mr-2`}
             onPress={toggleRememberMe}
           >
-            {rememberMe && <FontAwesome name="check" size={14} color={colors.text} />}
+            {rememberMe && <FontAwesome name="check" size={14} color="white" />}
           </TouchableOpacity>
-          <Text className="text-base text-gray-700">Remember me</Text>
+          <Text className="text-base text-gray-900">Remember me</Text>
         </View>
         
-        <Button 
-          title="Sign up" 
-          onPress={handleSignUp} 
-        />
+        <TouchableOpacity 
+          className="w-full py-4 rounded-full"
+          style={{ backgroundColor: email.trim() || password.trim() ? '#101010' : '#393939' }}
+          onPress={handleSignUp}
+        >
+          <Text className="text-white text-center text-lg font-semibold">
+            Sign up
+          </Text>
+        </TouchableOpacity>
 
-        <View className="flex-row items-center my-6 w-full">
+        <View className="flex-row items-center my-6 w-full mt-10 mb-10">
           <View className={`flex-1 h-px ${classes.border}`} />
-          <Text className="text-sm text-gray-500 mx-4">or continue with</Text>
+          <Text className="text-base text-gray-900 mx-4">or continue with</Text>
           <View className={`flex-1 h-px ${classes.border}`} />
         </View>
         
-        <View className="flex-row items-center justify-center space-x-6 mb-6">
+        <View className="flex-row items-center justify-center space-x-6 mb-10">
           <TouchableOpacity 
-            className={`w-14 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center`}
+            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-xl items-center justify-center`}
             onPress={() => handleSocialLogin('Facebook')}
           >
             <FontAwesome5 name="facebook" size={24} color="#3b5998" />
           </TouchableOpacity>
           <TouchableOpacity 
-            className={`w-14 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center mx-3`}
+            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center mx-3`}
             onPress={() => handleSocialLogin('Google')}
           >
             <FontAwesome name="google" size={24} color="#db4437" />
           </TouchableOpacity>
           <TouchableOpacity 
-            className={`w-14 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center`}
+            className={`w-16 h-14 ${classes.card} ${classes.border} border rounded-lg items-center justify-center`}
             onPress={() => handleSocialLogin('Apple')}
           >
             <FontAwesome name="apple" size={24} color={colors.text} />
@@ -123,6 +133,7 @@ export default function SignUpScreen() {
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+      </View>
+    </KeyboardAvoidingView>
   );
 }
