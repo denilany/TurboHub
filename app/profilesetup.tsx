@@ -25,9 +25,13 @@ const ProfileScreen: React.FC = () => {
   const emptyProfileImage = require('../src/assets/icons/user.png');
   const filledProfileImage = { uri: 'https://placehold.co/120x120/E8D6CC/white' };
 
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
   useEffect(() => {
-    // Check if all required fields have content
-    if (fullName.trim() && nickname.trim() && dateOfBirth.trim() && email.trim() && phoneNumber.trim() && gender.trim()) {
+    // Check if all required fields have content and email is valid
+    if (fullName.trim() && nickname.trim() && dateOfBirth.trim() && isValidEmail(email) && phoneNumber.trim() && gender.trim()) {
       setIsFormFilled(true);
     } else {
       setIsFormFilled(false);
