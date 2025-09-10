@@ -26,7 +26,7 @@ export default function SignUpScreen() {
   };
 
   const handleSignUp = () => {
-    console.log('Signing up with:', email, password)
+    router.push('/profilesetup');
   };
 
   const handleSocialLogin = (provider: string) => {

@@ -14,8 +14,8 @@ const ProfileScreen: React.FC = () => {
   const [isFormFilled, setIsFormFilled] = useState(false);
 
   // Profile images (for demonstration)
-  const emptyProfileImage = require('../assets/user-placeholder.png'); // Placeholder for a generic user icon
-  const filledProfileImage = { uri: 'https://placehold.co/120x120/E8D6CC/white' }; // Placeholder for a real photo
+  const emptyProfileImage = require('../src/assets/icons/user.png');
+  const filledProfileImage = { uri: 'https://placehold.co/120x120/E8D6CC/white' };
 
   useEffect(() => {
     // Check if any of the required fields have content
