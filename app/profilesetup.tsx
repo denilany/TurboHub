@@ -21,8 +21,11 @@ const ProfileScreen: React.FC = () => {
   const [gender, setGender] = useState('');
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
   const [showCountryPicker, setShowCountryPicker] = useState(false);
+  const [showGenderPicker, setShowGenderPicker] = useState(false);
 
   const [isFormFilled, setIsFormFilled] = useState(false);
+
+  const genderOptions = ['Male', 'Female', 'Other'];
 
   // Profile images (for demonstration)
   const emptyProfileImage = require('../src/assets/icons/user.png');
@@ -69,6 +72,11 @@ const ProfileScreen: React.FC = () => {
   const selectCountry = (country: Country) => {
     setSelectedCountry(country);
     setShowCountryPicker(false);
+  };
+
+  const selectGender = (selectedGender: string) => {
+    setGender(selectedGender);
+    setShowGenderPicker(false);
   };
 
   return (
@@ -123,7 +131,7 @@ const ProfileScreen: React.FC = () => {
           <Text className={`flex-1 text-lg ${dateOfBirth ? classes.text : 'text-gray-400'}`}>
             {dateOfBirth || 'Date of Birth'}
           </Text>
-          <FontAwesome5 name="calendar-alt" size={18} color={isFormFilled ? colors.text : '#9ca3af'} />
+          <FontAwesome5 name="calendar-alt" size={18} color={dateOfBirth ? colors.text : '#9ca3af'} />
         </TouchableOpacity>
         
         {showDatePicker && (
@@ -146,7 +154,7 @@ const ProfileScreen: React.FC = () => {
             onChangeText={setEmail}
             keyboardType="email-address"
           />
-          <FontAwesome5 name="envelope" size={18} color={isFormFilled ? colors.text : '#9ca3af'} />
+          <FontAwesome5 name="envelope" size={18} color={isValidEmail(email) ? colors.text : '#9ca3af'} />
         </View>
 
         {/* Phone Number Input */}
@@ -157,7 +165,7 @@ const ProfileScreen: React.FC = () => {
           >
             <Text className="text-xl">{selectedCountry.flag}</Text>
             <Text className={`text-sm ${classes.text} mx-1`}>{selectedCountry.code}</Text>
-            <FontAwesome5 name="chevron-down" size={12} color={isFormFilled ? colors.text : '#9ca3af'} />
+            <FontAwesome5 name="chevron-down" size={12} color={phoneNumber.trim() ? colors.text : '#9ca3af'} />
           </TouchableOpacity>
           <TextInput
             className={`flex-1 text-lg ${classes.text}`}
@@ -188,16 +196,30 @@ const ProfileScreen: React.FC = () => {
         )}
 
         {/* Gender Input */}
-        <View className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-20`} style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}>
-          <TextInput
-            className={`flex-1 text-lg ${classes.text}`}
-            placeholder="Gender"
-            placeholderTextColor="#9ca3af"
-            value={gender}
-            onChangeText={setGender}
-          />
-          <FontAwesome5 name="caret-down" size={18} color={isFormFilled ? colors.text : '#9ca3af'} />
-        </View>
+        <TouchableOpacity 
+          className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-20`} 
+          style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}
+          onPress={() => setShowGenderPicker(!showGenderPicker)}
+        >
+          <Text className={`flex-1 text-lg ${gender ? classes.text : 'text-gray-400'}`}>
+            {gender || 'Gender'}
+          </Text>
+          <FontAwesome5 name="caret-down" size={18} color={gender ? colors.text : '#9ca3af'} />
+        </TouchableOpacity>
+        
+        {showGenderPicker && (
+          <View className={`absolute bottom-24 left-0 right-0 ${classes.card} rounded-xl mx-6 z-10`} style={{ backgroundColor: colors.background }}>
+            {genderOptions.map((option, index) => (
+              <TouchableOpacity
+                key={index}
+                className={`p-4 ${index < genderOptions.length - 1 ? 'border-b' : ''} ${classes.border}`}
+                onPress={() => selectGender(option)}
+              >
+                <Text className={`text-lg ${classes.text}`}>{option}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        )}
       </View>
       
       {/* Continue Button */}
