@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
-import { View, Text, StatusBar, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, TextInput, Image, Platform, ScrollView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { FontAwesome5 } from '@expo/vector-icons';
 import CustomButton from '../src/components/CustomButton';
 import BackArrow from '../src/components/BackArrow';
 import { useThemeStyles } from '../src/hooks/useThemeStyles';
+import { countries, Country } from '../src/data/countries';
 
 const ProfileScreen: React.FC = () => {
   const { classes, colors } = useThemeStyles();
@@ -18,6 +19,8 @@ const ProfileScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+  const [showCountryPicker, setShowCountryPicker] = useState(false);
 
   const [isFormFilled, setIsFormFilled] = useState(false);
 
@@ -61,6 +64,11 @@ const ProfileScreen: React.FC = () => {
 
   const showDatePickerModal = () => {
     setShowDatePicker(true);
+  };
+
+  const selectCountry = (country: Country) => {
+    setSelectedCountry(country);
+    setShowCountryPicker(false);
   };
 
   return (
@@ -143,10 +151,14 @@ const ProfileScreen: React.FC = () => {
 
         {/* Phone Number Input */}
         <View className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-5`} style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}>
-          <View className="flex-row items-center mr-2">
-            <Text className="text-xl">🇺🇸</Text>
-            <FontAwesome5 name="chevron-down" size={12} color={isFormFilled ? colors.text : '#9ca3af'} className="ml-2" />
-          </View>
+          <TouchableOpacity 
+            className="flex-row items-center mr-3"
+            onPress={() => setShowCountryPicker(!showCountryPicker)}
+          >
+            <Text className="text-xl">{selectedCountry.flag}</Text>
+            <Text className={`text-sm ${classes.text} mx-1`}>{selectedCountry.code}</Text>
+            <FontAwesome5 name="chevron-down" size={12} color={isFormFilled ? colors.text : '#9ca3af'} />
+          </TouchableOpacity>
           <TextInput
             className={`flex-1 text-lg ${classes.text}`}
             placeholder="Phone Number"
@@ -156,6 +168,24 @@ const ProfileScreen: React.FC = () => {
             keyboardType="phone-pad"
           />
         </View>
+        
+        {showCountryPicker && (
+          <View className={`absolute bottom-24 left-0 right-0 ${classes.card} ${classes.border} border rounded-xl mx-6 h-48 z-10`} style={{ backgroundColor: colors.background }}>
+            <ScrollView showsVerticalScrollIndicator={false}>
+              {countries.map((country, index) => (
+                <TouchableOpacity
+                  key={index}
+                  className={`flex-row items-center p-3 ${index < countries.length - 1 ? 'border-b' : ''} ${classes.border}`}
+                  onPress={() => selectCountry(country)}
+                >
+                  <Text className="text-xl mr-3">{country.flag}</Text>
+                  <Text className={`text-sm ${classes.text} mr-2`}>{country.code}</Text>
+                  <Text className={`flex-1 text-sm ${classes.text}`}>{country.name}</Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </View>
+        )}
 
         {/* Gender Input */}
         <View className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-20`} style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}>
