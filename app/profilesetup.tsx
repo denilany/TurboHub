@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
-import { View, Text, StatusBar, TouchableOpacity, TextInput, Image, Platform, ScrollView } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, TextInput, Image, Platform, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { FontAwesome5 } from '@expo/vector-icons';
 import CustomButton from '../src/components/CustomButton';
@@ -80,7 +80,8 @@ const ProfileScreen: React.FC = () => {
   };
 
   return (
-    <View className={`flex-1 ${classes.background} items-center p-6`} style={{ backgroundColor: colors.background }}>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View className={`flex-1 ${classes.background} items-center p-6`} style={{ backgroundColor: colors.background }}>
       <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
 
       {/* Header and Back Arrow */}
@@ -228,7 +229,8 @@ const ProfileScreen: React.FC = () => {
         isActive={isFormFilled}
         onPress={handleContinue}
       />
-    </View>
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
