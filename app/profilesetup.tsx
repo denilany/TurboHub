@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { router } from 'expo-router';
-import { View, Text, StatusBar, TouchableOpacity, TextInput, Image } from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { FontAwesome5 } from '@expo/vector-icons';
 import CustomButton from '../src/components/CustomButton';
 import BackArrow from '../src/components/BackArrow';
@@ -12,6 +13,8 @@ const ProfileScreen: React.FC = () => {
   const [fullName, setFullName] = useState('');
   const [nickname, setNickname] = useState('');
   const [dateOfBirth, setDateOfBirth] = useState('');
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [gender, setGender] = useState('');
@@ -23,13 +26,13 @@ const ProfileScreen: React.FC = () => {
   const filledProfileImage = { uri: 'https://placehold.co/120x120/E8D6CC/white' };
 
   useEffect(() => {
-    // Check if any of the required fields have content
-    if (fullName.length > 0 || email.length > 0) {
+    // Check if all required fields have content
+    if (fullName.trim() && nickname.trim() && dateOfBirth.trim() && email.trim() && phoneNumber.trim() && gender.trim()) {
       setIsFormFilled(true);
     } else {
       setIsFormFilled(false);
     }
-  }, [fullName, email]);
+  }, [fullName, nickname, dateOfBirth, email, phoneNumber, gender]);
 
   const handleContinue = () => {
     if (isFormFilled) {
@@ -43,6 +46,18 @@ const ProfileScreen: React.FC = () => {
   const handleBackButton = () => {
     router.push('/signup')
   }
+
+  const handleDateChange = (event: any, date?: Date) => {
+    setShowDatePicker(Platform.OS === 'ios');
+    if (date) {
+      setSelectedDate(date);
+      setDateOfBirth(date.toLocaleDateString());
+    }
+  };
+
+  const showDatePickerModal = () => {
+    setShowDatePicker(true);
+  };
 
   return (
     <View className={`flex-1 ${classes.background} items-center p-6`} style={{ backgroundColor: colors.background }}>
@@ -88,16 +103,26 @@ const ProfileScreen: React.FC = () => {
         />
 
         {/* Date of Birth Input */}
-        <View className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-5`} style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}>
-          <TextInput
-            className={`flex-1 text-lg ${classes.text}`}
-            placeholder="Date of Birth"
-            placeholderTextColor="#9ca3af"
-            value={dateOfBirth}
-            onChangeText={setDateOfBirth}
-          />
+        <TouchableOpacity 
+          className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-5`} 
+          style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}
+          onPress={showDatePickerModal}
+        >
+          <Text className={`flex-1 text-lg ${dateOfBirth ? classes.text : 'text-gray-400'}`}>
+            {dateOfBirth || 'Date of Birth'}
+          </Text>
           <FontAwesome5 name="calendar-alt" size={18} color={isFormFilled ? colors.text : '#9ca3af'} />
-        </View>
+        </TouchableOpacity>
+        
+        {showDatePicker && (
+          <DateTimePicker
+            value={selectedDate}
+            mode="date"
+            display="default"
+            onChange={handleDateChange}
+            maximumDate={new Date()}
+          />
+        )}
 
         {/* Email Input */}
         <View className={`flex-row items-center h-14 w-full ${classes.card} rounded-xl px-4 mb-5`} style={{ borderColor: isFormFilled ? colors.text : '#9ca3af' }}>
