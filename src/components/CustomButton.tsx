@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, TouchableOpacityProps } from 'react-native';
+import { useThemeStyles } from '../hooks/useThemeStyles';
 
 interface CustomButtonProps extends TouchableOpacityProps {
   title: string;
@@ -7,13 +8,17 @@ interface CustomButtonProps extends TouchableOpacityProps {
 }
 
 export default function CustomButton({ title, isActive = false, ...props }: CustomButtonProps) {
+  const { classes } = useThemeStyles();
+
+  const buttonClassName = `w-full py-4 rounded-full ${isActive ? classes.button : 'bg-gray-400'}`;
+  const textClassName = `text-center text-lg font-semibold ${isActive ? classes.buttonText : 'text-white'}`;
+
   return (
     <TouchableOpacity 
-      className="w-full py-4 rounded-full"
-      style={{ backgroundColor: isActive ? '#101010' : '#393939' }}
+      className={buttonClassName}
       {...props}
     >
-      <Text className="text-white text-center text-lg font-semibold">
+      <Text className={textClassName}>
         {title}
       </Text>
     </TouchableOpacity>
