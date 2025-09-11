@@ -88,10 +88,11 @@ const ProfileScreen: React.FC = () => {
       <BackArrow
         text="Fill Your Profile"
         onPress={handleBackButton}
+        className='mt-5'
       />
 
       {/* Profile Picture and Edit Icon */}
-      <View className="relative w-32 h-32 rounded-full mb-10 mt-20">
+      <View className="relative w-32 h-32 rounded-full mb-10 mt-24">
         <Image
           source={isFormFilled ? filledProfileImage : emptyProfileImage}
           className="w-full h-full rounded-full"
