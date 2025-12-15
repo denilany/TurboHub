@@ -1,50 +1,154 @@
-# Welcome to your Expo app 👋
+# 🚗 TurboHub
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern React Native mobile application for browsing and purchasing cars. TurboHub brings the car dealership experience right to your fingertips with a sleek, intuitive interface.
 
-## Get started
+## 📋 Overview
 
-1. Install dependencies
+TurboHub is a comprehensive car dealing mobile application that allows users to browse, search, and purchase vehicles directly from their mobile devices. Built with React Native and styled with NativeWind, it offers a smooth, native-like experience on both iOS and Android platforms.
 
-   ```bash
-   npm install
-   ```
+## ✨ Key Features
 
-2. Start the app
+- 🏆 **Featured Cars** - Curated selection of premium vehicles
+- 🔍 **Advanced Search** - Find your perfect car with powerful filters
+- 💳 **Integrated Payments** - Secure payment processing built-in
+- 📱 **Cross-Platform** - Seamless experience on iOS and Android
+- 🎨 **Modern UI** - Clean, intuitive design with NativeWind styling
+- ⚡ **Fast Performance** - Optimized for smooth scrolling and navigation
+- 📸 **High-Quality Images** - Detailed car photos and galleries
+- 💰 **Price Transparency** - Clear pricing and payment options
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Tech Stack
 
-In the output, you'll find options to open the app in a
+- **Framework:** React Native
+- **Styling:** NativeWind (Tailwind CSS for React Native)
+- **Language:** JavaScript/TypeScript
+- **Payment Integration:** [Payment provider - e.g., Stripe, PayPal]
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🚀 Getting Started
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Prerequisites
 
-## Get a fresh project
+- Node.js (v18 or higher)
+- npm or yarn
+- React Native CLI
+- Xcode (for iOS development)
+- Android Studio (for Android development)
 
-When you're ready, run:
+### Installation
 
 ```bash
-npm run reset-project
+# Clone the repository
+git clone https://github.com/denilany/TurboHub.git
+
+# Navigate to project directory
+cd TurboHub
+
+# Install dependencies
+npm install
+
+# Install iOS dependencies (macOS only)
+cd ios && pod install && cd ..
+
+# Set up environment variables
+cp .env.example .env
+# Add your API keys and configuration
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### Running the App
 
-## Learn more
+```bash
+# Start Metro bundler
+npm start
 
-To learn more about developing your project with Expo, look at the following resources:
+# Run on iOS
+npm run ios
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Run on Android
+npm run android
+```
 
-## Join the community
+## 💻 Development
 
-Join our community of developers creating universal apps.
+```bash
+# Run in development mode
+npm start
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Run tests
+npm test
+
+# Lint code
+npm run lint
+
+# Format code
+npm run format
+```
+
+## 📸 Screenshots
+
+[Add app screenshots here - Home screen, Car details, Payment screen]
+
+## 🎯 App Structure
+
+```
+TurboHub/
+├── src/
+│   ├── components/     # Reusable UI components
+│   ├── screens/        # App screens
+│   ├── navigation/     # Navigation configuration
+│   ├── services/       # API services
+│   ├── utils/          # Helper functions
+│   └── assets/         # Images, fonts, etc.
+├── ios/                # iOS native code
+├── android/            # Android native code
+└── App.js              # Entry point
+```
+
+## 🗺️ Roadmap
+
+- [ ] User authentication and profiles
+- [ ] Wishlist/favorites functionality
+- [ ] Car comparison feature
+- [ ] Push notifications for new listings
+- [ ] In-app chat with dealers
+- [ ] Test drive booking
+- [ ] Trade-in calculator
+- [ ] Financing options
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**Denil Anyonyi**
+
+- Portfolio: [dev-denil.netlify.app](https://dev-denil.netlify.app/)
+- GitHub: [@denilany](https://github.com/denilany)
+- LinkedIn: [Denil Anyonyi](https://www.linkedin.com/in/denil-anyonyi/)
+- Twitter: [@denil_dev](https://twitter.com/denil_dev)
+
+## 🙏 Acknowledgments
+
+- Built with [React Native](https://reactnative.dev/)
+- Styled with [NativeWind](https://www.nativewind.dev/)
+- Icons from [React Native Vector Icons](https://github.com/oblador/react-native-vector-icons)
+
+## 🌟 Show your support
+
+Give a ⭐️ if you like this project!
+
+---
+
+<div align="center">
+Made with ❤️ by Denil Anyonyi
+</div>
